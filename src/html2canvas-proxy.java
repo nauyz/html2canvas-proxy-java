@@ -7,17 +7,17 @@
 		callback = request.getParameter("callback");
 		
 		URL imageURL = new URL(url);
-	    RenderedImage img = ImageIO.read(imageURL);
-	    String imageString = null;
-	    ByteArrayOutputStream bos = new ByteArrayOutputStream(); 
+		RenderedImage img = ImageIO.read(imageURL);
+	    	String imageString = null;
+	    	ByteArrayOutputStream bos = new ByteArrayOutputStream(); 
 		ImageIO.write(img, "png", bos);
 		
 		byte[] imageBytes = bos.toByteArray();
 		BASE64Encoder encoder = new BASE64Encoder();  
-        imageString = encoder.encode(imageBytes); 
-        imageString = imageString.replaceAll("\r\n", "");
-        imageString = imageString.replaceAll("\r", "");
-        imageString = imageString.replaceAll("\n", "");
+        	imageString = encoder.encode(imageBytes); 
+        	imageString = imageString.replaceAll("\r\n", "");
+        	imageString = imageString.replaceAll("\r", "");
+        	imageString = imageString.replaceAll("\n", "");
 		
 		byte[] callbackBytes = (callback + "(\"data:image/png;base64," + imageString + "\")").getBytes();
 		
